@@ -6,8 +6,9 @@ export interface MenuItemImage {
 export interface MenuItem {
   name: string;
   price: number | string; // string for ranges like "3.000 / 2.500"
-  unit?: string; // e.g. "/ cup muffin", "/ roti", "/ pcs"
+  unit?: string; // e.g. "/ cup muffin", "/ roti", "/ pc"
   note?: string;
+  originalPrice?: number | string; // keep original price for revert
   images?: [MenuItemImage, MenuItemImage, MenuItemImage]; // exactly 3 images
 }
 
@@ -22,8 +23,9 @@ const menuData: MenuCategory[] = [
     items: [
       {
         name: "Risole Sayur",
-        price: 2500,
-        unit: "/ pcs",
+        price: 0,
+        originalPrice: 2500,
+        unit: "/ pc",
         images: [
           { src: "/images/risole-sayur-1.jpg", alt: "Risole Sayur" },
           { src: "/images/risole-sayur-2.jpg", alt: "Risole Sayur close-up" },
@@ -32,8 +34,9 @@ const menuData: MenuCategory[] = [
       },
       {
         name: "Risole Ragout",
-        price: 3000,
-        unit: "/ pcs",
+        price: 0,
+        originalPrice: 3000,
+        unit: "/ pc",
         images: [
           { src: "/images/risole-ragout-1.jpg", alt: "Risole Ragout" },
           { src: "/images/risole-ragout-2.jpg", alt: "Risole Ragout close-up" },
@@ -42,8 +45,9 @@ const menuData: MenuCategory[] = [
       },
       {
         name: "Pastel Bihun Sayur",
-        price: 2500,
-        unit: "/ pcs",
+        price: 0,
+        originalPrice: 2500,
+        unit: "/ pc",
         images: [
           {
             src: "/images/pastel-bihun-sayur-1.jpg",
@@ -61,8 +65,9 @@ const menuData: MenuCategory[] = [
       },
       {
         name: "Pastel Bihun Telur",
-        price: 3500,
-        unit: "/ pcs",
+        price: 0,
+        originalPrice: 3500,
+        unit: "/ pc",
         images: [
           {
             src: "/images/pastel-bihun-telur-1.jpg",
@@ -80,8 +85,9 @@ const menuData: MenuCategory[] = [
       },
       {
         name: "Dadar Gulung",
-        price: 3000,
-        unit: "/ pcs",
+        price: 0,
+        originalPrice: 3000,
+        unit: "/ pc",
         images: [
           { src: "/images/dadar-gulung-1.jpg", alt: "Dadar Gulung" },
           { src: "/images/dadar-gulung-2.jpg", alt: "Dadar Gulung close-up" },
@@ -90,8 +96,9 @@ const menuData: MenuCategory[] = [
       },
       {
         name: "Onde-Onde Wijen",
-        price: 2500,
-        unit: "/ pcs",
+        price: 0,
+        originalPrice: 2500,
+        unit: "/ pc",
         images: [
           { src: "/images/onde-onde-wijen-1.jpg", alt: "Onde-Onde Wijen" },
           {
@@ -111,7 +118,8 @@ const menuData: MenuCategory[] = [
     items: [
       {
         name: "Bolu Chocolate Banana",
-        price: 5000,
+        price: 0,
+        originalPrice: 5000,
         unit: "/ cup muffin",
         images: [
           {
@@ -130,7 +138,8 @@ const menuData: MenuCategory[] = [
       },
       {
         name: "Bolu Cake Tape",
-        price: 5000,
+        price: 0,
+        originalPrice: 5000,
         unit: "/ cup muffin",
         images: [
           { src: "/images/bolu-cake-tape-1.jpg", alt: "Bolu Cake Tape" },
@@ -143,7 +152,8 @@ const menuData: MenuCategory[] = [
       },
       {
         name: "Bolu Chedar Cheese",
-        price: 5000,
+        price: 0,
+        originalPrice: 5000,
         unit: "/ cup muffin",
         images: [
           {
@@ -162,7 +172,8 @@ const menuData: MenuCategory[] = [
       },
       {
         name: "Brownies Fudgy",
-        price: 5000,
+        price: 0,
+        originalPrice: 5000,
         unit: "/ cup muffin",
         images: [
           { src: "/images/brownies-fudgy-1.jpg", alt: "Brownies Fudgy" },
@@ -178,7 +189,8 @@ const menuData: MenuCategory[] = [
       },
       {
         name: "Salt Bread",
-        price: 5000,
+        price: 0,
+        originalPrice: 5000,
         unit: "/ roti",
         images: [
           { src: "/images/salt-bread-1.jpg", alt: "Salt Bread" },
@@ -188,7 +200,8 @@ const menuData: MenuCategory[] = [
       },
       {
         name: "Hokkaido Cheese Lotus",
-        price: 5000,
+        price: 0,
+        originalPrice: 5000,
         unit: "/ cup",
         images: [
           {
@@ -207,8 +220,9 @@ const menuData: MenuCategory[] = [
       },
       {
         name: "Banana Milk Crispy",
-        price: 3000,
-        unit: "/ pcs",
+        price: 0,
+        originalPrice: 5000,
+        unit: "/ pc",
         images: [
           {
             src: "/images/banana-milk-crispy-1.jpg",
@@ -230,59 +244,135 @@ const menuData: MenuCategory[] = [
     category: "Donat",
     items: [
       {
-        name: "Donat Kentang Toping Gula",
-        price: 2000,
-        unit: "/ pcs",
+        name: "Donat Pumpkin/Kentang Toping Gula",
+        price: 3500,
+        unit: "/ pc",
         images: [
           {
             src: "/images/donat-kentang-gula-1.jpg",
-            alt: "Donat Kentang Toping Gula",
+            alt: "Donat Pumpkin/Kentang Toping Gula",
           },
           {
             src: "/images/donat-kentang-gula-2.jpg",
-            alt: "Donat Kentang Toping Gula close-up",
+            alt: "Donat Pumpkin/Kentang Toping Gula close-up",
           },
           {
             src: "/images/donat-kentang-gula-3.jpg",
-            alt: "Donat Kentang Toping Gula detail",
+            alt: "Donat Pumpkin/Kentang Toping Gula detail",
           },
         ],
       },
       {
-        name: "Donat Pumpkin Toping Dancow",
-        price: 3000,
-        unit: "/ pcs",
+        name: "Donat Pumpkin/Kentang Toping Dancow",
+        price: 4000,
+        unit: "/ pc",
         images: [
           {
             src: "/images/donat-pumpkin-dancow-1.jpg",
-            alt: "Donat Pumpkin Toping Dancow",
+            alt: "Donat Pumpkin/Kentang Toping Dancow",
           },
           {
             src: "/images/donat-pumpkin-dancow-2.jpg",
-            alt: "Donat Pumpkin Toping Dancow close-up",
+            alt: "Donat Pumpkin/Kentang Toping Dancow close-up",
           },
           {
             src: "/images/donat-pumpkin-dancow-3.jpg",
-            alt: "Donat Pumpkin Toping Dancow detail",
+            alt: "Donat Pumpkin/Kentang Toping Dancow detail",
           },
         ],
       },
       {
-        name: "Donat Pumpkin Toping Meses Ceres",
-        price: 3000,
-        unit: "/ pcs",
+        name: "Donat Pumpkin/Kentang Toping Meses Ceres",
+        price: 4000,
+        unit: "/ pc",
         images: [
           {
             src: "/images/donat-pumpkin-messes-1.jpg",
-            alt: "Donat Pumpkin Toping Meses Ceres",
+            alt: "Donat Pumpkin/Kentang Toping Meses Ceres",
           },
           {
             src: "/images/donat-pumpkin-messes-2.jpg",
-            alt: "Donat Pumpkin Toping Meses Ceres close-up",
+            alt: "Donat Pumpkin/Kentang Toping Meses Ceres close-up",
           },
           {
             src: "/images/donat-pumpkin-messes-3.jpg",
-            alt: "Donat Pumpkin Toping Meses Ceres detail",
+            alt: "Donat Pumpkin/Kentang Toping Meses Ceres detail",
+          },
+        ],
+      },
+      {
+        name: "Donat Pumpkin/Kentang Toping Lotus",
+        price: 6000,
+        unit: "/ pc",
+        images: [
+          {
+            src: "/images/donat-pumpkin-lotus-1.jpg",
+            alt: "Donat Pumpkin/Kentang Toping Lotus",
+          },
+          {
+            src: "/images/donat-pumpkin-lotus-2.jpg",
+            alt: "Donat Pumpkin/Kentang Toping Lotus close-up",
+          },
+          {
+            src: "/images/donat-pumpkin-lotus-3.jpg",
+            alt: "Donat Pumpkin/Kentang Toping Lotus detail",
+          },
+        ],
+      },
+      {
+        name: "Donat Pumpkin/Kentang Toping Cream Cheese",
+        price: 6000,
+        unit: "/ pc",
+        images: [
+          {
+            src: "/images/donat-pumpkin-cream-cheese-1.jpg",
+            alt: "Donat Pumpkin/Kentang Toping Cream Cheese",
+          },
+          {
+            src: "/images/donat-pumpkin-cream-cheese-2.jpg",
+            alt: "Donat Pumpkin/Kentang Toping Cream Cheese close-up",
+          },
+          {
+            src: "/images/donat-pumpkin-cream-cheese-3.jpg",
+            alt: "Donat Pumpkin/Kentang Toping Cream Cheese detail",
+          },
+        ],
+      },
+      {
+        name: "Donat Pumpkin/Kentang Almond",
+        price: 6000,
+        unit: "/ pc",
+        images: [
+          {
+            src: "/images/donat-pumpkin-almond-1.jpg",
+            alt: "Donat Pumpkin/Kentang Almond",
+          },
+          {
+            src: "/images/donat-pumpkin-almond-2.jpg",
+            alt: "Donat Pumpkin/Kentang Almond close-up",
+          },
+          {
+            src: "/images/donat-pumpkin-almond-3.jpg",
+            alt: "Donat Pumpkin/Kentang Almond detail",
+          },
+        ],
+      },
+      {
+        name: "Donat Pumpkin/Kentang Peanut",
+        price: 5000,
+        unit: "/ pc",
+        images: [
+          {
+            src: "/images/donat-pumpkin-peanut-1.jpg",
+            alt: "Donat Pumpkin/Kentang Peanut",
+          },
+          {
+            src: "/images/donat-pumpkin-peanut-2.jpg",
+            alt: "Donat Pumpkin/Kentang Peanut close-up",
+          },
+          {
+            src: "/images/donat-pumpkin-peanut-3.jpg",
+            alt: "Donat Pumpkin/Kentang Peanut detail",
           },
         ],
       },

@@ -5,6 +5,7 @@ import Image from "next/image";
 import menuData, { MenuCategory, MenuItem } from "@/data/menu";
 
 function formatPrice(price: number | string, unit?: string): string {
+  if (price === 0) return "";
   if (typeof price === "string") return `Rp ${price}`;
   const formatted = price.toLocaleString("id-ID");
   return unit ? `Rp ${formatted} ${unit}` : `Rp ${formatted}`;
